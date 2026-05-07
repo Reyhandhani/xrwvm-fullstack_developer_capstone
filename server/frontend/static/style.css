@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1f2937;
+    color: white;
+    padding: 14px 30px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.brand a {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.username {
+    margin-right: 16px;
+    color: #bfdbfe;
+}
+
+.container {
+    padding: 30px;
+}
+
+.hero {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.filter-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.dealer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.dealer-card,
+.review-card,
+.dealer-detail,
+.form-card,
+.page-card {
+    background: white;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.button,
+button {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    border: none;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.button.secondary {
+    background: #059669;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-card {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-card.wide {
+    max-width: 760px;
+}
+
+.error {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.profile-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.active {
+    font-weight: bold;
+    text-decoration: underline;
+}

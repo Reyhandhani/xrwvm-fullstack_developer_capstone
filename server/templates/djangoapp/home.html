@@ -1,0 +1,45 @@
+{% extends 'djangoapp/base.html' %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to Best Cars Dealership</h1>
+    <p>Find trusted car dealers and read customer reviews before choosing your next car.</p>
+</section>
+
+<section class="filter-box">
+    <h2>Filter dealers by state</h2>
+
+    <a class="button" href="/">All States</a>
+
+    {% for state in states %}
+        <a class="button" href="/dealers/state/{{ state }}/">{{ state }}</a>
+    {% endfor %}
+</section>
+
+<section>
+    {% if selected_state %}
+        <h2>Dealers in {{ selected_state }}</h2>
+    {% else %}
+        <h2>All Dealers</h2>
+    {% endif %}
+
+    <div class="dealer-grid">
+        {% for dealer in dealers %}
+            <div class="dealer-card">
+                <h3>{{ dealer.name }}</h3>
+                <p>{{ dealer.address }}</p>
+                <p>{{ dealer.city }}, {{ dealer.state }} {{ dealer.zip_code }}</p>
+                <p>{{ dealer.phone }}</p>
+
+                <a class="button" href="/dealer/{{ dealer.id }}/">View Dealer Details</a>
+
+                {% if user.is_authenticated %}
+                    <a class="button secondary" href="/dealer/{{ dealer.id }}/review/">Review Dealer</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No dealers found.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'djangoapp/base.html' %}
+
+{% block content %}
+<div class="form-card wide">
+    <h1>Post Review for {{ dealer.name }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Review</label>
+        <textarea name="review" rows="5" required>Fantastic services.</textarea>
+
+        <label>
+            <input type="checkbox" name="purchase">
+            I purchased a car from this dealer
+        </label>
+
+        <label>Purchase Date</label>
+        <input type="date" name="purchase_date">
+
+        <label>Car Make</label>
+        <select name="car_make">
+            {% for car in car_makes %}
+                <option value="{{ car.make }}">{{ car.make }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Car Model</label>
+        <select name="car_model">
+            {% for car in car_makes %}
+                <option value="{{ car.model }}">{{ car.model }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
+{% endblock %}

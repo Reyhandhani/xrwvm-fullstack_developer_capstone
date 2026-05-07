@@ -1,0 +1,35 @@
+{% extends 'djangoapp/base.html' %}
+
+{% block content %}
+<section class="dealer-detail">
+    <h1>{{ dealer.name }}</h1>
+
+    <p><strong>Address:</strong> {{ dealer.address }}</p>
+    <p><strong>City:</strong> {{ dealer.city }}</p>
+    <p><strong>State:</strong> {{ dealer.state }}</p>
+    <p><strong>ZIP:</strong> {{ dealer.zip_code }}</p>
+    <p><strong>Phone:</strong> {{ dealer.phone }}</p>
+
+    {% if user.is_authenticated %}
+        <a class="button" href="/dealer/{{ dealer.id }}/review/">Review Dealer</a>
+    {% else %}
+        <p><a href="/login/">Login</a> to add a review.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>Dealer Reviews</h2>
+
+    {% for review in reviews %}
+        <div class="review-card">
+            <h3>{{ review.reviewer }}</h3>
+            <p>{{ review.review }}</p>
+            <p><strong>Sentiment:</strong> {{ review.sentiment }}</p>
+            <p><strong>Car:</strong> {{ review.car_make }} {{ review.car_model }}</p>
+            <p><strong>Purchase:</strong> {% if review.purchase %}Yes{% else %}No{% endif %}</p>
+        </div>
+    {% empty %}
+        <p>No reviews yet.</p>
+    {% endfor %}
+</section>
+{% endblock %}
