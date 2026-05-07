@@ -250,7 +250,7 @@ def api_get_reviews_by_dealer(request, dealer_id):
 
 def api_get_cars(request):
     cars = CarMake.objects.all().order_by('make')
-    data = [{'make': car.make, 'model': car.model} for car in cars]
+    data = [{'CarMake': car.make, 'CarModel': car.model} for car in cars]
     return JsonResponse({'CarModels': data})
 
 
