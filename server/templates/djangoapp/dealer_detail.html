@@ -24,7 +24,15 @@
         <div class="review-card">
             <h3>{{ review.reviewer }}</h3>
             <p>{{ review.review }}</p>
-            <p><strong>Sentiment:</strong> {{ review.sentiment }}</p>
+            <p><strong>Sentiment:</strong> {{ review.sentiment }}
+                {% if review.sentiment == 'positive' %}
+                    <img src="https://raw.githubusercontent.com/IBM/xrwvm-fullstack_developer_capstone/master/server/frontend/static/positive.png" alt="positive" width="20">
+                {% elif review.sentiment == 'negative' %}
+                    <img src="https://raw.githubusercontent.com/IBM/xrwvm-fullstack_developer_capstone/master/server/frontend/static/negative.png" alt="negative" width="20">
+                {% else %}
+                    <img src="https://raw.githubusercontent.com/IBM/xrwvm-fullstack_developer_capstone/master/server/frontend/static/neutral.png" alt="neutral" width="20">
+                {% endif %}
+            </p>
             <p><strong>Car:</strong> {{ review.car_make }} {{ review.car_model }}</p>
             <p><strong>Purchase:</strong> {% if review.purchase %}Yes{% else %}No{% endif %}</p>
         </div>

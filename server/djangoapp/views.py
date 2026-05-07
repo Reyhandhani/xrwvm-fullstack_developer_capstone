@@ -144,12 +144,15 @@ def register_page(request):
 def dealer_to_dict(dealer):
     return {
         'id': dealer.id,
-        'name': dealer.name,
+        'full_name': dealer.name,
+        'short_name': dealer.name,
         'city': dealer.city,
         'state': dealer.state,
         'address': dealer.address,
         'zip': dealer.zip_code,
         'phone': dealer.phone,
+        'latitude': 0.0,
+        'longitude': 0.0,
     }
 
 
@@ -184,14 +187,14 @@ def api_login(request):
 
     if user is not None:
         login(request, user)
-        return JsonResponse({'status': 'success', 'message': 'Logged in', 'userName': user.username})
+        return JsonResponse({'status': 'Authenticated', 'userName': user.username})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid credentials'}, status=401)
 
 
 def api_logout(request):
     logout(request)
-    return JsonResponse({'status': 'success', 'message': 'Logged out'})
+    return JsonResponse({'userName': ''})
 
 
 @csrf_exempt
@@ -242,13 +245,13 @@ def api_get_dealer_by_id(request, dealer_id):
 def api_get_reviews_by_dealer(request, dealer_id):
     dealer = get_object_or_404(Dealer, id=dealer_id)
     reviews = Review.objects.filter(dealer=dealer).order_by('-created_at')
-    return JsonResponse({'reviews': [review_to_dict(review) for review in reviews]})
+    return JsonResponse([review_to_dict(review) for review in reviews], safe=False)
 
 
 def api_get_cars(request):
     cars = CarMake.objects.all().order_by('make')
     data = [{'make': car.make, 'model': car.model} for car in cars]
-    return JsonResponse({'cars': data})
+    return JsonResponse({'CarModels': data})
 
 
 def api_analyze_review(request, text):

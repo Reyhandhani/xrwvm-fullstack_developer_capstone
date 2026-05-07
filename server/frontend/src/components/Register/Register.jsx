@@ -33,43 +33,45 @@ const Register = () => {
     <div className="register-page">
       <h2>Sign-up</h2>
 
-      <input
-        name="userName"
-        placeholder="Username"
-        value={form.userName}
-        onChange={handleChange}
-      />
+      <form onSubmit={(e) => { e.preventDefault(); register(); }}>
+        <input
+          name="userName"
+          placeholder="Username"
+          value={form.userName}
+          onChange={handleChange}
+        />
 
-      <input
-        name="firstName"
-        placeholder="First Name"
-        value={form.firstName}
-        onChange={handleChange}
-      />
+        <input
+          name="firstName"
+          placeholder="First Name"
+          value={form.firstName}
+          onChange={handleChange}
+        />
 
-      <input
-        name="lastName"
-        placeholder="Last Name"
-        value={form.lastName}
-        onChange={handleChange}
-      />
+        <input
+          name="lastName"
+          placeholder="Last Name"
+          value={form.lastName}
+          onChange={handleChange}
+        />
 
-      <input
-        name="email"
-        placeholder="Email"
-        value={form.email}
-        onChange={handleChange}
-      />
+        <input
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+        />
 
-      <input
-        name="password"
-        type="password"
-        placeholder="Password"
-        value={form.password}
-        onChange={handleChange}
-      />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={handleChange}
+        />
 
-      <button onClick={register}>Register</button>
+        <button type="submit">Register</button>
+      </form>
     </div>
   );
 };

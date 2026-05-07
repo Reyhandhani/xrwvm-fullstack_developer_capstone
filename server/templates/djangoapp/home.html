@@ -23,23 +23,43 @@
         <h2>All Dealers</h2>
     {% endif %}
 
-    <div class="dealer-grid">
-        {% for dealer in dealers %}
-            <div class="dealer-card">
-                <h3>{{ dealer.name }}</h3>
-                <p>{{ dealer.address }}</p>
-                <p>{{ dealer.city }}, {{ dealer.state }} {{ dealer.zip_code }}</p>
-                <p>{{ dealer.phone }}</p>
-
-                <a class="button" href="/dealer/{{ dealer.id }}/">View Dealer Details</a>
-
+    <table class="table" style="width: 100%; text-align: left; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr style="border-bottom: 2px solid #ccc;">
+                <th>ID</th>
+                <th>Dealer Name</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>ZIP</th>
+                <th>State</th>
+                <th>Phone</th>
+                <th>Details</th>
                 {% if user.is_authenticated %}
-                    <a class="button secondary" href="/dealer/{{ dealer.id }}/review/">Review Dealer</a>
+                <th>Review</th>
                 {% endif %}
-            </div>
-        {% empty %}
-            <p>No dealers found.</p>
-        {% endfor %}
-    </div>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dealer in dealers %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td>{{ dealer.id }}</td>
+                    <td>{{ dealer.name }}</td>
+                    <td>{{ dealer.city }}</td>
+                    <td>{{ dealer.address }}</td>
+                    <td>{{ dealer.zip_code }}</td>
+                    <td>{{ dealer.state }}</td>
+                    <td>{{ dealer.phone }}</td>
+                    <td><a href="/dealer/{{ dealer.id }}/">View</a></td>
+                    {% if user.is_authenticated %}
+                    <td><a href="/dealer/{{ dealer.id }}/review/">Review Dealer</a></td>
+                    {% endif %}
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="9">No dealers found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </section>
 {% endblock %}
